@@ -1,14 +1,12 @@
 'use strict';
 
-const webhookElem = document.getElementById('webhook-url');
-const channelElem = document.getElementById('channel');
-const usernameElem = document.getElementById('username');
+const elRoomId = document.getElementById('roomId');
+const elApiToken = document.getElementById('token');
 chrome.storage.local.get(['chatConfig'], function(data) {
   // console.log(data);
   if (data.chatConfig) {
-    webhookElem.innerText = data.chatConfig.webhook ?? "";
-    channelElem.innerText = data.chatConfig.channel ?? "";
-    usernameElem.innerText = data.chatConfig.username ?? "";
+    elRoomId.innerText = data.chatConfig.roomId ?? "";
+    elApiToken.innerText = data.chatConfig.token ?? "";
   }
 });
-// console.log(webhookElem.innerText, channelElem.innerText, usernameElem.innerText);
+// console.log(elRoomId.innerText, elApiToken.innerText, usernameElem.innerText);

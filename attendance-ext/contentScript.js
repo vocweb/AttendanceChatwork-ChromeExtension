@@ -6,9 +6,11 @@ let chatConf = {};
 function loadChatConf(){
     chrome.storage.local.get(['chatConfig'], function(data) {
         if (data.chatConfig) {
-            chatConf.webhook = data.chatConfig.webhook;
-            chatConf.channel = data.chatConfig.channel;
-            chatConf.username = data.chatConfig.username;
+            // chatConf.webhook = data.chatConfig.webhook;
+            // chatConf.channel = data.chatConfig.channel;
+            // chatConf.username = data.chatConfig.username;
+            chatConf.token = data.chatConfig.token;
+            chatConf.roomId = data.chatConfig.roomId;
         }
     });
 };
@@ -42,7 +44,7 @@ function getUserText() {
     const re = /^(.+?)さん$/
     mfckExtUser = re.exec(userName)[1];
     mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
-    // console.log(user);
+    console.log("getUserText -- username:" + mfckExtUser);
     return mfckExtUser;
 }
 function getDateText() {
@@ -66,7 +68,7 @@ function getMessageText(text) {
 function getUserText2() {
     mfckExtUser = document.getElementById('root').firstChild.firstChild.lastChild.lastChild.firstChild.firstChild.innerText;
     mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
-    // console.log(ret);
+    console.log("getUserText2 -- username:" + mfckExtUser);
     return mfckExtUser;
 }
 /**
@@ -111,12 +113,15 @@ function dataJson(messageText){
 
 function postChat(data){
     // console.log(data);
-    fetch(chatConf.webhook, {
+    var url = "https://api.chatwork.com/v2/rooms/" + chatConf.roomId + "/messages";
+    fetch(url, {
         method: "POST",
         mode: "no-cors",
         cache: "no-cache",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // 'content-type': 'application/x-www-form-urlencoded',
+            'x-chatworktoken': $apiToken,
         },
         body: JSON.stringify(data)
         // })

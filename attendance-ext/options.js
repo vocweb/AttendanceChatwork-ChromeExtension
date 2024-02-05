@@ -1,27 +1,24 @@
 'use strict';
 
-const webhookElem = document.getElementById('webhook-url');
-const channelElem = document.getElementById('channel');
-const usernameElem = document.getElementById('username');
+const elRoomId = document.getElementById('roomId');
+const elApiToken = document.getElementById('token');
 chrome.storage.local.get(['chatConfig'], function(data) {
   // console.log(data);
   if (data.chatConfig) {
-    webhookElem.value = data.chatConfig.webhook ?? "";
-    channelElem.value = data.chatConfig.channel ?? "";
-    usernameElem.value = data.chatConfig.username ?? "";
+    elRoomId.value = data.chatConfig.roomId ?? "";
+    elApiToken.value = data.chatConfig.token ?? "";
   }
 });
-// console.log(webhookElem.value, channelElem.value, usernameElem.value);
+// console.log(elRoomId.value, elApiToken.value, usernameElem.value);
 
 const buttonClick = function(){
   const button = document.getElementById('config-set');
   button.addEventListener('click', function() {
     const chatConfig = {
-      webhook: webhookElem.value,
-      channel: channelElem.value,
-      username: usernameElem.value
+      roomId: elRoomId.value,
+      token: elApiToken.value
     };
-    // console.log(chatConfig);
+    console.log(chatConfig);
 
     chrome.storage.local.set({chatConfig: chatConfig}, function() {
       console.log('chatConfig is ' + chatConfig);

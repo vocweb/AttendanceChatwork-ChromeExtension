@@ -9,24 +9,19 @@
   </head>
   <body>
     <div class="container">
-      <h1>Chat setting</h1>
+      <h1>チャットワーク設定 (Chatwork setting)</h1>
       <form>
         <div class="row">
           <div class="mb-3 col-sm-7">
-            <label for="webhook-url" class="h3 form-label">webhook url</label>
-            <input type="url" class="form-control" id="webhook-url" placeholder="https://your-chat/hooks/XXXXXXXXXX" required>
+            <label for="roomId" class="h3 form-label">通知ルームID (Notice room id)</label>
+            <input type="url" class="form-control" id="roomId" placeholder="https://www.chatwork.com/#!ridXXXXXXXXX" required>
           </div>
         </div>
         <div class="row">
           <div class="mb-3 col-sm-3">
-            <label for="channel" class="h3 form-label">#channel</label>
-            <input type="text" class="form-control" id="channel" placeholder="off-topic">
-            <div id="channelHelp" class="form-text">Webhook default value or input value.</div>
-          </div>
-          <div class="mb-3 col-sm-3">
-            <label for="username" class="h3 form-label">@username</label>
-            <input type="text" class="form-control" id="username" placeholder="username">
-            <div id="usernameHelp" class="form-text">Webhook default value or input value.</div>
+            <label for="token" class="h3 form-label">チャットワークAPIトークン (Chatwork API token)</label>
+            <input type="text" class="form-control" id="token" placeholder="off-topic">
+            <div id="tokenHelp" class="form-text"></div>
           </div>
         </div>
         <div class="row">
